@@ -5,7 +5,7 @@ using TMPro;
 public class ClickOnEarth : MonoBehaviour
 {
 
-    public Vector2 LongLat;
+    [HideInInspector] public Vector2 LongLat;
     [SerializeField] TextMeshProUGUI latText;
     [SerializeField] TextMeshProUGUI longText;
     Vector3 _offset;

@@ -957,7 +957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 476, y: -95}
+  m_AnchoredPosition: {x: 821, y: -60}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &436160859
@@ -1170,9 +1170,9 @@ RectTransform:
   m_Father: {fileID: 1497352053}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.5, y: -5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 659.5, y: -279}
   m_SizeDelta: {x: 935, y: 556}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485215766
@@ -4493,8 +4493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ab00cf453506f4bb985c8545f70891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickingOnEarth: 0
-  boolSaveRotEarth: 0
+  ClickingOnEarth: 0
+  BoolSaveRotEarth: 0
 --- !u!4 &4569100222780326834
 Transform:
   m_ObjectHideFlags: 0
@@ -4522,9 +4522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fcc893f569f1e40b426951448e2861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  longLat: {x: 0, y: 0}
-  _latText: {fileID: 692072263}
-  _longText: {fileID: 220307770}
+  LongLat: {x: 0, y: 0}
+  latText: {fileID: 692072263}
+  longText: {fileID: 220307770}
 --- !u!135 &4569100222780326837
 SphereCollider:
   m_ObjectHideFlags: 0
