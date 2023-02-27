@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class RotationEarth : MonoBehaviour
 {
-
     public bool ClickingOnEarth;
     public bool BoolSaveRotEarth;
     Vector3 _grabbedPoint;
     Quaternion _saveRotEarth;
+    public ClickOnEarth clickOnEarth;
 
     private void Update()
     {
@@ -27,7 +27,6 @@ public class RotationEarth : MonoBehaviour
             }
         }
     }
-
     Vector3 GetTouchedPoint()
     {
         Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit rh);
@@ -50,50 +49,16 @@ public class RotationEarth : MonoBehaviour
             transform.localRotation *= rot;
         }
     }
-
     private void OnMouseUp()
     {
         ClickingOnEarth = false;
     }
-
-
-
-
-
-
-
-
-
-
-    /*
-        private void OnMouseEnter()
-        {
-            b = true;
-        }
-        private void OnMouseExit()
-        {
-            b = false;
-        }
-    */
-
-    //transform.RotateAround(transform.position, new(0f, 1f, 0f), -Input.GetAxis("Mouse X") * rotationSpeed);
-    //transform.RotateAround(transform.position, new(1f, 0f, 0f), Input.GetAxis("Mouse Y") * rotationSpeed);
-
-    /*
-    public void OnGUI()
+    public void PositionIndicator()
     {
-        if (Event.current.type == EventType.MouseDrag)
-        {
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out oldHitPoint))
-            {
-                rotate(Event.current.delta);
-            }
-        }
+        
+        clickOnEarth.Indicator.transform.position = clickOnEarth.RecupHit.point;
+        
+        
+        
     }
-    public void rotate(Vector2 mCurrentPos)
-    {
-        transform.rotation = Quaternion.Euler(-mCurrentPos.y, -mCurrentPos.x, 0) *  transform.rotation;
-    }
-    */
-
 }
