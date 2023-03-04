@@ -5,17 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 
 public class OnClickAutoCompletion : MonoBehaviour
-{
-    GameObject _goAutocomplete;
-    GameObject _goApi_WebRequest;
-
+{  
     [SerializeField] Text txt;
 
-
+    GameObject _goAutocomplete;
+    GameObject _goApi_WebRequest;
     Autocomplete _autocomplete;
-    API_WebRequest _api_WebRequest;
-   
-
+    API_WebRequest _api_WebRequest;  
 
     // Prochainement enlever getcomponent !!!!!!!!!!!!!!!!!
     public void ClikAutoCompleted()
@@ -28,11 +24,11 @@ public class OnClickAutoCompletion : MonoBehaviour
         //------------------------------------------------------------
 
 
-        _autocomplete.inputField.text = txt.text;
+        _autocomplete.InputField.text = txt.text;
         _autocomplete.ClearResults();
       
         StartCoroutine(_api_WebRequest.GetApiGeo());
-        _autocomplete.panel.SetActive(false);
+        _autocomplete.Panel.SetActive(false);
     }
 
     public void RecupReff(Autocomplete autocomplete, API_WebRequest api_WebRequest)

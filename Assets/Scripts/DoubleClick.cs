@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class DoubleClick : MonoBehaviour
 {
-
+    [SerializeField] ClickOnEarth clickOnEarth;
+    [SerializeField] API_WebRequest api_WebRequest;
+    [SerializeField] RotationEarth rotationEarth;
 
     float _firstLeftClickTime;
     float _timeBetweenLeftClick = 0.5f;
     bool _isTimeCheckAllowed = true;
     int _leftClickNum = 0;
-    [SerializeField] ClickOnEarth clickOnEarth;
-    [SerializeField] API_WebRequest api_WebRequest;
-    [SerializeField] RotationEarth rotationEarth;
-
     bool _onClickingInEarth = false;
 
     void Update()

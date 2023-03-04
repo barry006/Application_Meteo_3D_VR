@@ -12,30 +12,28 @@ public class Autocomplete : MonoBehaviour
 {   //------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------Scipt on TMP_InputField.---------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
-    public TMP_InputField inputField;
-    public GameObject panel;
+    public TMP_InputField InputField;
+    public GameObject Panel;
 
-    [SerializeField] public RectTransform resultsParent;     //GameObject with rect trasnsfrom and vertical layout.    
-    [SerializeField] RectTransform prefab;                   //Prefab with text.
+    [SerializeField] RectTransform resultsParent;                       //GameObject with rect trasnsfrom and vertical layout.    
+    [SerializeField] RectTransform prefab;                              //Prefab with text.
     [SerializeField] ScrollRect _myScrollRect;
     [SerializeField] List<MyObject> listName = new List<MyObject>();
     [SerializeField] int nombreDeResultatDansLaBarreDeRecherche = 20;
-
-    // string filePath = @"Assets/Json/JustName.json";
-    string _url = "";
-    bool _panelActived;
+    //------------------------
     [SerializeField] Autocomplete autocomplete;
     [SerializeField] API_WebRequest api_WebRequest;
+    //------------------------
+    //
+    bool _panelActived;
+    //string _url = "";
+    // string filePath = @"Assets/Json/JustName.json".
 
-
-    [SerializeField]
     List<string> _villeEnDur = new List<string>() { "Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Etienne", "Toulon", "Grenoble", "Dijon", "Angers",
         "Nîmes", "Villeurbanne", "Le Mans", "Aix-en-Provence", "Clermont-Ferrand", "Brest", "Tours", "Limoges", "Amiens", "Annecy", "Perpignan", "Boulogne-Billancourt", "Metz", "Besançon", "Orléans", "Saint-Denis", "Mulhouse", "Rouen", "Saint-Paul", "Caen", "Nancy",
         "Argenteuil", "Montreuil", "Saint-Pierre", "Roubaix", "Tourcoing", "Nanterre", "Avignon", "Vitry-sur-Seine", "Créteil", "Dunkerque", "Poitiers", "Asnières-sur-Seine", "Courbevoie", "Versailles", "Colombes", "Fort-de-France", "Aulnay-sous-Bois", "Saint-Maur-des-Fossés",
         "Rueil-Malmaison", "Champigny-sur-Marne", "Aubervilliers", "Saint-Priest", "Le Tampon", "Béziers", "Saint-Nazaire", "La Rochelle", "La Seyne-sur-Mer", "Calais", "Choisy-le-Roi", "Pau", "Saint-André", "Ivry-sur-Seine", "Cergy", "Chelles", "Chambéry", "Saint-Brieuc",
         "Talence", "Castres", "Angoulême", "Douai", "Mérignac", "Tarbes", "Thionville", "Vannes", "Nevers", "Villeneuve-d'Ascq", "Montauban", "Lorient", "Massy", "Bobigny", "Saint-Malo", "Valenciennes", "Gennevilliers" };
-
-
 
     [System.Serializable]
     public class MyObject
@@ -43,55 +41,37 @@ public class Autocomplete : MonoBehaviour
         public string name;
     }
 
-
-
-    //---------------------Recup Json--------------------------------------
+    //---------------------Recup Json----------------------------------
     private void Awake()
     {
-        inputField.onValueChanged.AddListener(OnInputValueChanged);
-       
-        
-        //StartCoroutine(AddToList_Town_With_Url2());
+        InputField.onValueChanged.AddListener(OnInputValueChanged);
 
+        StartCoroutine(AddToList_Town_With_Url2());
 
-
-        /*
-        using (WebClient webClient = new WebClient())
-        {
-            _url = webClient.DownloadString("https://raw.githubusercontent.com/barry006/Json/921b7d15028767575f094bedbfe452b65cd42d06/JustName.json");
-            AddToList_Town_With_Url();
-            
-        }
-        */
-
-
-        /*
-        if (File.Exists(filePath))
-        {
-            AddToList_Town_With_Path();
-        }
-        */
+        //ApiCallWith_Url();
+        //ApiCallWith_Path();
     }
-    //---------------------Recup Json--------------------------------------
+    //---------------------Recup Json----------------------------------
+
 
 
 
     //---------------------button--------------------------------------
     private void OnInputValueChanged(string newText)
     {
-        if (inputField.text != string.Empty)
+        if (InputField.text != string.Empty)
         {
-            panel.SetActive(true);
+            Panel.SetActive(true);
             ClearResults();
             FillResults(GetResults(newText));
-            _myScrollRect.verticalNormalizedPosition = 1f;    //Premier élément du group en haut du scrollRect.
+            _myScrollRect.verticalNormalizedPosition = 1f;    //Pour mettre les éléments du group en haut du scrollRect.
             _panelActived = true;
 
         }
         else
         {
-            inputField.text = string.Empty;
-            panel.SetActive(false);
+            InputField.text = string.Empty;
+            Panel.SetActive(false);
             _panelActived = false;
             ClearResults();
         }
@@ -108,10 +88,6 @@ public class Autocomplete : MonoBehaviour
     }
     //---------------------button--------------------------------------
 
-
-
-
-
     private void FillResults(List<string> results)
     {
         results.Sort();
@@ -122,35 +98,9 @@ public class Autocomplete : MonoBehaviour
             // child.GetComponent<OnClickAutoCompletion>().RecupReff(autocomplete, api_WebRequest);
             child.GetComponentInChildren<Text>().text = results[resultIndex];
             child.SetParent(resultsParent);
-
-
         }
     }
-
     private List<string> GetResults(string input)
-    {
-        List<string> results = new List<string>();
-
-        var count = 0;
-        foreach (string s in _villeEnDur)
-        {
-            if (s.StartsWith(input, StringComparison.CurrentCultureIgnoreCase))
-            {
-                //results.Add(s);
-                results.Insert(0, s);
-                count++;
-
-                if (count == nombreDeResultatDansLaBarreDeRecherche)
-                {
-
-                    break;
-                }
-            }
-        }
-        return results;
-    }  
-    
-    private List<string> GetResults2(string input)
     {
         List<string> results = new List<string>();
 
@@ -165,23 +115,12 @@ public class Autocomplete : MonoBehaviour
 
                 if (count == nombreDeResultatDansLaBarreDeRecherche)
                 {
-
                     break;
                 }
             }
         }
         return results;
     }
-
-
-    /*
-    public void AddToList_Town_With_Url()
-    {
-        listName = JsonConvert.DeserializeObject<List<MyObject>>(_url);
-    }
-
-
-
     public IEnumerator AddToList_Town_With_Url2()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://raw.githubusercontent.com/barry006/Json/921b7d15028767575f094bedbfe452b65cd42d06/JustName.json");
@@ -197,9 +136,61 @@ public class Autocomplete : MonoBehaviour
         }
     }
 
+    //-----------------------------------------------------------------------------------------------------------
+    /*
+    public void AddToList_Town_With_Url()
+    {
+        listName = JsonConvert.DeserializeObject<List<MyObject>>(_url);
+    }
+    */
+    //--------------------------
+    /*
+    private List<string> GetResults2(string input)
+    {
+        List<string> results = new List<string>();
+
+        var count = 0;
+        foreach (string s in _villeEnDur)
+        {
+            if (s.StartsWith(input, StringComparison.CurrentCultureIgnoreCase))
+            {
+                //results.Add(s);
+                results.Insert(0, s);
+                count++;
+
+                if (count == nombreDeResultatDansLaBarreDeRecherche)
+                {
+                    break;
+                }
+            }
+        }
+        return results;
+    }  
+    */
+    //--------------------------
+    /*
      public void AddToList_Town_With_Path()
      {
          string classData = File.ReadAllText(filePath);
          listName = JsonConvert.DeserializeObject<List<MyObject>>(classData);        
      } */
+    //--------------------------
+    /*  void ApiCallWith_Url()
+      {
+          using (WebClient webClient = new WebClient())
+          {
+              _url = webClient.DownloadString("https://raw.githubusercontent.com/barry006/Json/921b7d15028767575f094bedbfe452b65cd42d06/JustName.json");
+              AddToList_Town_With_Url();
+
+          }
+      }*/
+    //--------------------------
+    /*  void ApiCallWith_Path()
+      {
+          if (File.Exists(filePath))
+          {
+              AddToList_Town_With_Path();
+          }
+      }*/
+    //-----------------------------------------------------------------------------------------------------------
 }

@@ -7,9 +7,11 @@ public class RotationEarth : MonoBehaviour
 {
     public bool ClickingOnEarth;
     public bool BoolSaveRotEarth;
+    public ClickOnEarth clickOnEarth;
+
     Vector3 _grabbedPoint;
     Quaternion _saveRotEarth;
-    public ClickOnEarth clickOnEarth;
+    
 
     private void Update()
     {

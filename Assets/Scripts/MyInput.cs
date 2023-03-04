@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class MyInput : MonoBehaviour
 {
-    [SerializeField] API_WebRequest aPI_WebRequest;
+    [SerializeField] API_WebRequest api_WebRequest;
     [SerializeField] Autocomplete autocomplete;
     bool b;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && aPI_WebRequest.Ville_InputField.text != string.Empty)
+        if (Input.GetKeyDown(KeyCode.Return) && api_WebRequest.Ville_InputField.text != string.Empty)
         {           
-            StartCoroutine(aPI_WebRequest.GetApiGeo());
+            StartCoroutine(api_WebRequest.GetApiGeo());
             autocomplete.ClearResults();
-            autocomplete.panel.SetActive(false);           
+            autocomplete.Panel.SetActive(false);           
         }
     }
     

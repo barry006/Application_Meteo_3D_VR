@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MDP.unity
     guid: f98e4de5e7488684e9029ad0f35554cd
   - enabled: 1

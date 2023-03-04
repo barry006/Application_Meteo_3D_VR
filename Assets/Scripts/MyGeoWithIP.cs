@@ -28,11 +28,10 @@ public class MyGeoWithIP : MonoBehaviour
         geoPluginResponse response = JsonConvert.DeserializeObject<geoPluginResponse>(data);
         string _city = response.City;
         //Debug.Log(_city);
-
         _url = "https://api.openweathermap.org/";
         _url += $"/geo/1.0/direct?q={_city}";
         _url += $"&appid=9e87513ef7f34a0b9dbcf2c387617b30";
-        //Debug.Log("_url_url_url" + _url);
+        //Debug.Log("_url_url_url : " + _url);
         StartCoroutine(aPI_WebRequest.GetUnityWebRequestText(_url, "ApiGeo"));
         
 
